@@ -724,7 +724,7 @@
         body: formBody
       }).then(res => {
         return res.json();
-      }).then(data=>{console.log(data); if(res.status==200)
+      }).then(data=>{console.log(data); if(data.RefID)
       {
            order_button.innerHTML="<b>Place Order</b>";  launch_toast(
           //check mark
@@ -741,8 +741,11 @@
             </div>
            </div>
           `;
+    }
+    else{
+      launch_toast("✘", data.message || "Unable to place your order.")
     } 
-    }).catch(err=>{console.log(err); lauch_toast("✘", "An error occurred while placing order."); order_button.innerHTML="<b>Place Order</b>"});
+    }).catch(err=>{console.log(err); launch_toast("✘", "Unable to place your order."); order_button.innerHTML="<b>Place Order</b>"});
 
 
       // console.log(form_obj);
@@ -758,9 +761,9 @@
           console.log(json);
 
           document.getElementById("confirmation-positive").innerHTML = "Go Home";
-          document.getElementById("confirmation-negative").innerHTML = "Call Our UAN Number";
+          document.getElementById("confirmation-negative").innerHTML = "Call Us";
           
-          confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("home.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("home.html", "_self")});
+          // confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("index.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});
            
         }
       })
