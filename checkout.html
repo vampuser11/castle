@@ -419,6 +419,28 @@
        </div>
 
     </div>
+    <div class="modal fade" id="confirmation-modal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmation-title">Modal title</h5>
+                <!-- <button type="button" id="confi" class="close" aria-label="Close" onclick="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body" id="confirmation-body">
+                ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="confirmation-positive">Yes</button>
+                <button type="button" class="btn btn-secondary" id="confirmation-negative">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
+
     <div id="toast">
       <div id="img">Icon</div>
       <div id="desc">A notification message..</div>
@@ -692,17 +714,7 @@
       }
       formBody = formBody.join("&");
       
-      fetch(
-        servers.api+"/servicetime"
-      ).then(res=>{
-        if(res.status == 200) return res.json()
-      }).then(json=>{
-        const time = parseInt(Math.round(new Date().getTime())/1000, 10)%(60*60*24);
-        if(time<json.START_TIME || time>json.END_TIME){
-          confirmation("Our service is not current available "+Outlets[value].Name, "Go Home", () => {}, () => {});
-           
-        }
-      })
+   
 
       fetch(
         servers.api+"/orders/guestOrder",
@@ -735,5 +747,22 @@
 
       // console.log(form_obj);
     }
+
+    fetch(
+        servers.api+"/servicetime"
+      ).then(res=>{
+        if(res.status == 200) return res.json()
+      }).then(json=>{
+        const time = parseInt(Math.round(new Date().getTime())/1000, 10)%(60*60*24);
+        if(time<json.START_TIME || time>json.END_TIME){
+          console.log(json);
+
+          document.getElementById("confirmation-positive").innerHTML = "Go Home";
+          document.getElementById("confirmation-negative").innerHTML = "Call Our UAN Number";
+          
+          confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("home.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("home.html", "_self")});
+           
+        }
+      })
   </script>
 </html>
