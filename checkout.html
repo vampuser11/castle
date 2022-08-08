@@ -724,9 +724,10 @@
         body: formBody
       }).then(res => {
         return res.json();
-      }).then(data=>{console.log(data); if(data.RefID)
+      }).then(data=>{console.log(data);order_button.innerHTML="<b>Place Order</b>";
+       if(data.RefID)
       {
-           order_button.innerHTML="<b>Place Order</b>";  launch_toast(
+             launch_toast(
           //check mark
           "✔"  
           ,"Order has been placed"); clearCart();
@@ -747,7 +748,6 @@
     } 
     }).catch(err=>{console.log(err); launch_toast("✘", "Unable to place your order."); order_button.innerHTML="<b>Place Order</b>"});
 
-
       // console.log(form_obj);
     }
 
@@ -763,7 +763,7 @@
           document.getElementById("confirmation-positive").innerHTML = "Go Home";
           document.getElementById("confirmation-negative").innerHTML = "Call Us";
           
-          // confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("index.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});
+          confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("index.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});
            
         }
       })
