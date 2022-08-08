@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- meta icon -->
+    <link
+      rel="icon"
+      href="https://vampuser12.github.io/castle/images/logo/whites-castle-128.png" />
+      
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <title>Whites Castle</title>
+  </head>
+  <body onload="myScript()" style="padding-top: 5em">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand ms-5 fw-bold fs-3" href="index.html">White's Castle
+          <!-- logo -->
+          <img src="https://vampuser12.github.io/castle/images/logo/whites-castle-128.png" width="48" alt="logo" class="img-fluid d-inline" />
+        </a>
+        <div class="d-flex">
+          <a
+            href="cart.html"
+            class="btn btn-outline btn-light d-block d-md-none"
+            ><i class="fa-shopping-cart fa"></i
+            ><span class="badge rounded-pill bg-success d-none cart-count">
+              3
+              <span class="visually-hidden">number of cart</span>
+            </span></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mb-2 mb-lg-0 ms-auto fs-5 me-5">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarScrollingDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <i class="fa fa-shopping-cart"></i>
+                <span class="badge rounded-pill bg-success d-none cart-count">
+                  3
+                  <span class="visually-hidden">number of cart</span>
+                </span>
+              </a>
+              <ul
+                class="dropdown-menu bg-dark dropdown-menu-dark"
+                aria-labelledby="navbarScrollingDropdown"
+              >
+                <li class="">
+                  <a class="dropdown-item text-center p-2 px-5" href="cart.html"
+                    >View Cart</a
+                  >
+                </li>
+                <li class="d-flex">
+                  <a
+                    class="text-decoration-none w-100 btn-success text-center p-2 px-5"
+                    href="checkout.html"
+                    >Checkout</a
+                  ><a
+                    class="text-decoration-none w-100 btn-danger text-center p-2 px-5 cursor-pointer"
+                    href="#"
+                    onclick="clearCart()"
+                    >Clear</a
+                  >
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                  <div class="w-100 px-3 text-end">
+                    Total:
+                    <span class="fs-5 fw-bold total-cart-price">0</span> PKR
+                  </div>
+                </li>
+                <li class="p-2">
+                  <ol
+                    class="list-group"
+                    style="max-height: 50vh; overflow-y: auto"
+                    id="cart-items"
+                  ></ol>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="menu.html">Menu</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="branches.html">Branches</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="order.html">My Order</a>
+            </li>
+          </ul>
+          <span class="navbar-text"> </span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main nav-scroller">
+      <!-- show multiple receipt page -->
+      <!-- demo order card -->
+      <div class="container">
+        <div class="row orders">
+          <!-- Search bar -->
+            <div class="col-lg-9 col-md-6 col-12 d-flex">
+              <!-- Show entries  -->
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">
+                    Show
+                  </span>
+                </div>
+                <select
+                  class="bg-white rounded ps-1 pe-1"
+                  id="pagelimiter"
+                  aria-label="Default select example"
+                  onchange="changeLimit(this.value)"
+                >
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text" id="inputGroup-sizing-default">
+                    entries
+                  </span>
+                </div>
+
+                <!-- new order button in same line -->
+                <!-- blinking button -->
+
+
+                <div id="new-order-btn" class="input-group-append" style="flex-grow: 2; display: none;">
+                  <a href="orders_history.html"
+                    class="btn btn-danger btn-flashing w-100"
+                    onclick="newOrder()"
+                  >
+                    New Order
+                  </a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+              
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2" 
+                id="search-input"
+                onkeydown="searchOrder()"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-addon2"
+                  onclick="searchOrder('')"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+              
+            </div>
+
+          </div>
+            <div class="table-responsive pt-2">
+              
+          <table class="table table-striped table-bordered align-middle text-center">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Ref#</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">⅀</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Show</th>
+                </tr>
+            </thead>
+            <tbody id="table-orders">
+
+              <tr class="flex">
+                <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                
+              </td>
+              <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </td>
+                <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                
+              </td>
+              <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </td>
+                <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                
+              </td>
+              <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </td>
+                <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                
+              </td>
+              <td>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </td>
+                <td>
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  </td>
+                  <td>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    </td>
+              </tr>
+                      
+            </tbody>
+        </table>
+
+        <!-- list page numbers  -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" id="page-numbers">
+            <!-- selected page -->
+
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+
+            <li class="page-item">
+             <span class="page-link" id="orders-count">Test</span>
+            </li>
+          </ul>
+          <!-- orders-count -->
+          
+
+        </nav>
+
+
+      </div>
+        </div>
+      </div>
+    </div>
+  <div class="modal fade" id="confirmation-modal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-modal="true"
+      role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="confirmation-title">Modal title</h5>
+                  <!-- <button type="button" id="confi" class="close" aria-label="Close" onclick="closeModal()">
+                      <span aria-hidden="true">&times;</span>
+                  </button> -->
+              </div>
+              <div class="modal-body" id="confirmation-body">
+                  ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmation-positive">Yes</button>
+                  <button type="button" class="btn btn-secondary" id="confirmation-negative">No</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
+
+    <div id="toast">
+      <div id="img">Icon</div>
+      <div id="desc">A notification message..</div>
+    </div>
+    <!-- <button onclick="(new Audio('http://soundbible.com/grab.php?id=1630&type=wav')).play();"></button> -->
+  </body>
+  <script src="cart.js"></script>
+  <script>
+    "use strict";
+
+    let granted = false;
+    if (Notification.permission === 'granted') {
+        granted = true;
+    } else if (Notification.permission !== 'denied') {
+         Notification.requestPermission().then(permission=>{
+          granted = permission === 'granted' ? true : false;
+        });
+    }
+
+    // get page and limit number from href attribute
+    let parameters = window.location.href.split("?")[1];
+    let page = 0;
+    let limit = 10;
+
+    let count = 0;
+
+    try{
+      page = parseInt(parameters.split("&")[0].split("=")[1]) -1 ;
+    }
+    catch(err){
+      page = 0;
+    }
+    try{
+      limit = parseInt(parameters.split("&")[1].split("=")[1]);
+    }
+    catch(err){
+      limit = 10;
+    }
+    
+    if(limit!=10){
+      document.getElementById("pagelimiter").value = limit;
+    }
+    
+    function searchOrder(){
+      var searchValue = document.getElementById("search-input").value;
+        var table = document.getElementById("table-orders");
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            var text = row.innerText;
+            if (text.toLowerCase().indexOf(searchValue.toLowerCase()) > -1) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+    function myScript() {
+      initializeComponents();
+      //fetch login status
+      fetch_auth(servers.api+"/auth/me").then(
+        function (response) {
+          // response.json().then(res=>console.log(res));
+          // console.log();
+
+          if (response.status !== 200) {
+            console.log(response);
+            //readable stream to text
+            response.text().then((res) => {
+              console.log(res);
+            });
+            // response.body.getReader().read().then(res=>console.log(res));
+            // response.json().then(res => {
+            //   console.log(res);
+            // });
+            return;
+          } //go to orders.html
+          else {
+            response.text().then((res) => {
+              console.log(res);
+            });
+            //get orders
+            fetch_auth(servers.api+"/orders/page/"+page+'/'+limit)
+              .then(function (response) {
+                console.log(response);
+                if (response.status !== 200) {
+                  response.text().then((res) => console.log(res));
+                  return;
+                }
+                return response.json();
+              })
+              .then(function (data) {
+                console.log(data);
+                let data_table = '';
+                //show orders
+                var orders = document.getElementsByClassName("orders")[0];
+                var listdata = "";
+                for (var i = 0; i < data.length; i++) {
+                  var order = data[i];
+                  console.log(order);
+
+                  //get order status
+                  let status = "Pending";
+                  if (order.Cancelled) {
+                    status = "Cancelled";
+                  } else if (order.OrderDelivered) status = "Delivered";
+                  else if (order.RiderHandOver) status = "On The Way";
+                  else if (order.OrderPreparing) status = "Preparing";
+                  else if (order.OrderReceived) status = "Picked";
+
+                  let outlet_html = '';
+                  if(order.Outlet){
+                    let outlet = Outlets[order.Outlet];
+                    outlet_html = `<span class="text-white fw-bold rounded py-1 px-2" style="background: #${outlet.Color};
+                    font-family: 'Roboto', sans-serif;
+                    ">${outlet.Name}</span>`;
+                  }
+                  else{
+                    outlet_html+= '<select onchange="selectOutlet('+order.ID+',this.value)" class="text-white fw-bold p-1 rounded bg-primary"><option selected disabled>---</option>';
+                    for(let o of Object.keys(Outlets)){
+                    // if(order.Outlet==Outlets[j]){
+                      outlet_html += `<option value="${o}">${Outlets[o].Name}</option>`;
+                    // }
+
+                  } 
+                  outlet_html += '</select>';
+                  }
+
+                  data_table += `<tr>
+                            <td>${order.Created.split("T")[0]+
+                              " " + order.Created.split("T")[1].split(".")[0]}</td>
+                            <td class="fw-bold font-monospace">${order.RefID}</td>
+                            <td>${order.CustomerName}</td>
+                            <td>${order.DeliveryAddress}</td>
+                            <td>${order.CustomerPhone}</td>
+                            <td><i>${order.Items}</i></td>
+                            <td>${order.DiscountedAmount}</td>
+                            <td id="outlet-${order.ID}" class="text-center">${outlet_html}</td>
+                            <td id="status-${order.ID}">${
+                              status=='Cancelled' ? '<span class="bg-danger text-white fw-bold  rounded py-1 px-3">Cancelled</span>':
+                              status=='Delivered' ? '<span class="bg-success text-white fw-bold  rounded py-1 px-3">Delivered</span>':
+                              `<select class="${
+                              status == "Picked" ? "bg-dark text-white" :
+                              status == "On The Way" ? "bg-light" :
+                              status == "Preparing" ? "bg-primary  text-white" :
+                              status == "Pending" ? "bg-secondary text-white" :
+                              "bg-warning text-white"
+
+                            } fw-bold p-1 rounded" id="status${
+                  order.ID
+                }" onchange="changeOrderStatus(${order.ID})">
+                  <option ${
+                    status == "Pending" ? "selected" : ""
+                  } value="Pending">Pending</option>
+                  <option ${
+                    status == "Picked" ? "selected" : ""
+                  } value="Picked">Picked</option>
+                  <option ${
+                    status == "Preparing" ? "selected" : ""
+                  } value="Preparing">Preparing</option>
+                  <option ${
+                    status == "On The Way" ? "selected" : ""
+                  } value="On The Way">On The Way</option>
+                  <option ${
+                    status == "Delivered" ? "selected" : ""
+                  } value="Delivered">Delivered</option>
+                  <option ${
+                    status == "Cancelled" ? "selected" : ""
+                  } value="Cancelled">Cancelled</option>
+                  </select>`
+                            }</td>
+                            <td><a class="btn btn-success btn-sm"
+                               href="receipt.html#${order.RefID}"
+                                target="_blank">
+                                  <i class="fas fa-eye"></i></a>
+                            </td>
+                            
+                        </tr>`;
+                      } 
+               
+                document.getElementById("table-orders").innerHTML = data_table;
+              });
+          }
+        }
+
+        // Examine the text in the response
+      );
+
+      loadCartItems();
+    }
+    function selectOutlet(orderID, value){
+
+        confirmation("Selecting "+Outlets[value].Name, "Are you sure?", () => {
+            fetch_auth(servers.api+"/orders/SelectOrderOutlet", "POST",
+             `OrderID=${orderID}&Outlet=${value}`
+            )
+            .then(function (response) {
+                console.log(response);
+                if (response.status !== 200) {
+                    response.text().then((res) => console.log(res));
+                    return;
+                }
+                return response.json();
+            })
+            .then(function (data) {
+              //change branch to the selected one
+              document.getElementById("outlet-"+orderID).innerHTML = `<span class="text-white fw-bold  rounded py-1 px-3" style="background: #${Outlets[value].Color}">${Outlets[value].Name}</span>`;
+
+            });
+      }, () => {
+          // console.log("no");
+        }); 
+    }
+    function changeOrderStatus(orderID) {
+      var status = document.getElementById("status" + orderID).value;
+      console.log(orderID, status);
+      confirmation('Are you sure?', 'Setting status as '+status, ()=>{
+        
+        fetch_auth(
+        servers.api+"/orders/ChangeOrderStatus","POST",
+        `OrderID=${orderID}&Status=${
+            //encoded
+            encodeURIComponent(status)
+          }`).then(function (response) {
+        if (response.status !== 200) {
+          response.text().then(function (text) {
+            console.log(text);
+          });
+        } else {
+          //change order status in table
+          var status_DOM = document.getElementById("status-" + orderID);
+          status_DOM.innerHTML = `${
+                              status=='Cancelled' ? '<span class="bg-danger text-white fw-bold  rounded py-1 px-3">Cancelled</span>':
+                              status=='Delivered' ? '<span class="bg-success text-white fw-bold  rounded py-1 px-3">Delivered</span>':
+                              `<select class="${
+                              status == "Picked" ? "bg-dark text-white" :
+                              status == "On The Way" ? "bg-light" :
+                              status == "Preparing" ? "bg-primary  text-white" :
+                              status == "Pending" ? "bg-secondary text-white" :
+                              "bg-warning text-white"
+
+                            } fw-bold p-1 rounded" id="status${
+                  orderID
+                }" onchange="changeOrderStatus(${orderID})">
+                  <option ${
+                    status == "Pending" ? "selected" : ""
+                  } value="Pending">Pending</option>
+                  <option ${
+                    status == "Picked" ? "selected" : ""
+                  } value="Picked">Picked</option>
+                  <option ${
+                    status == "Preparing" ? "selected" : ""
+                  } value="Preparing">Preparing</option>
+                  <option ${
+                    status == "On The Way" ? "selected" : ""
+                  } value="On The Way">On The Way</option>
+                  <option ${
+                    status == "Delivered" ? "selected" : ""
+                  } value="Delivered">Delivered</option>
+                  <option ${
+                    status == "Cancelled" ? "selected" : ""
+                  } value="Cancelled">Cancelled</option>
+                  </select>`
+                            }`;
+          
+        }
+
+        // return response.json();
+      });
+    
+    });
+    }
+    function showOrder(orderID){
+      //open recept page on new tab 
+
+      window.open("receipt.html#"+orderID);
+
+
+    }
+    // fetching count
+    fetch_auth(servers.api + '/orders/countAll').then(function (response) {
+      if (response.status !== 200) {
+        response.text().then(function (text) {
+          console.log(text);
+        });
+      } else {
+        response.json().then(function (data) {
+          //set page numbers 
+          count = data.count;
+          var pages = Math.ceil(data.count / limit);
+          var page_numbers = "";
+          for (var i = 1; i <= pages; i++) {
+            page_numbers += `<li class="page-item ${i-1==page? "active" : ""}"><a class="page-link" href="#" onclick="changePage(${i})">${i}</a></li>`;
+          }
+          page_numbers+= `
+            <li class="page-item">
+             <span class="page-link text-secondary fw-bold">${count} Orders total</span>
+            </li>`
+          document.getElementById("page-numbers").innerHTML = page_numbers;
+
+          
+
+          //keep fetching order count after 30 seconds
+          setInterval(function () {
+            fetch_auth(servers.api+'/orders/countAll').then(function (response) {
+              if (response.status !== 200) {
+                response.text().then(function (text) {
+                  console.log(text);
+                });
+              } else {
+                response.json().then(function (data) {
+                  console.log(data);
+                  if(count && count != data.count){
+                    //show new order button
+                    document.getElementById("new-order-btn").style.display = "block";
+                    new Audio('http://soundbible.com/grab.php?id=1630&type=wav').play();
+
+                     // create a new notification
+                    const notification = new Notification('New Order', {
+                        body: 'Please check new order',
+                        icon: 'https://vampuser12.github.io/castle/images/logo/whites-castle-128.png'
+                    });
+
+                    // close the notification after 10 seconds
+                    setTimeout(() => {
+                        notification.close();
+                    }, 10 * 1000);
+
+                    // navigate to a URL when clicked
+                    notification.addEventListener('click', () => {
+
+                        window.open('https://www.whitescastle.pk/orders_history.html', '_blank');
+                    });
+                  }
+                  
+                  // document.getElementById("orders-count").innerHTML = data;
+                  
+                });
+              }
+            });
+          }, 15000);
+          
+        });
+      }
+    }).catch(function (error) {
+      console.log("Catch me if you can...");
+      console.log(error);
+    }
+    );
+
+
+    function changeLimit(limit){
+      //change limit parameter in url
+      var url = new URL(window.location.href);
+      url.searchParams.set("page", 1);
+      url.searchParams.set("limit", limit);
+      window.location.href = url;      
+    }
+
+    function changePage(page){
+      //change page parameter in url
+      var url = new URL(window.location.href);
+      url.searchParams.set("page", page);
+      url.searchParams.set("limit", limit);
+      window.location.href = url;
+    }
+  </script>
+</html>
