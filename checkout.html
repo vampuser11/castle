@@ -693,6 +693,18 @@
       formBody = formBody.join("&");
       
       fetch(
+        servers.api+"/servicetime"
+      ).then(res=>{
+        if(res.status == 200) return res.json()
+      }).then(json=>{
+        const time = parseInt(Math.round(new Date().getTime())/1000, 10)%(60*60*24);
+        if(time<json.START_TIME || time>json.END_TIME){
+          confirmation("Our service is not current available "+Outlets[value].Name, "Go Home", () => {}, () => {});
+           
+        }
+      })
+
+      fetch(
         servers.api+"/orders/guestOrder",
         {
         method: "POST",
