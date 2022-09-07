@@ -375,7 +375,7 @@
                             <td>${order.Created.split("T")[0]+
                               " " + order.Created.split("T")[1].split(".")[0]}</td>
                             <td class="fw-bold font-monospace">${order.RefID}</td>
-                            <td>${order.CustomerID? '<a href="customer.html?ID='+order.CustomerID+'" target="_blank">'+order.CustomerName+'</a>':order.CustomerName}</td>
+                            <td>${order.CustomerID? '<a href="customer?ID='+order.CustomerID+'" target="_blank">'+order.CustomerName+'</a>':order.CustomerName}</td>
                             <td>${order.DeliveryAddress}</td>
                             <td>${order.CustomerPhone}</td>
                             <td><i>${order.Items}</i></td>

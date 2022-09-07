@@ -11,6 +11,9 @@
       crossorigin="anonymous"
     />
     <link
+      rel="icon"
+      href="https://vampuser12.github.io/castle/images/logo/whites-castle-128.png" />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     />
@@ -48,12 +51,6 @@
     background-color: rgba(255, 255, 255, .1);
     border-radius: 5px;
 }
-.opacity-hover{
-  opacity: 0.8;
-}
-.opacity-hover:hover{
-  opacity: 1;
-}
 @media (min-width: 768px) {
   .bg-md-transparent{
     background-color: rgba(255, 255, 255, 0.0) !important;
@@ -61,6 +58,10 @@
   .back-cover{
   margin-top: -75px;
   }
+}
+body{
+  padding: 0;
+  margin: 0;
 }
     </style>
     <title>Whites Castle</title>
@@ -238,40 +239,38 @@
 
 
 
-    <footer class="bd-footer mt-2 bg-dark text-white">
-      <div class="container py-3">
-        <div class="row place-items-center">
-          <div class="col-lg-3 col-md-6 col-12 mb-3">
-            <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="index.html" aria-label="Bootstrap">
-              <img src="Images/logo.png" width="100px" alt="" srcset="">
-              <span class="fs-5 fw-bold text-secondary">Whites<br>Castle</span>
-            </a>
-            <ul class="list-unstyled small text-muted">
-              <!-- <li class="mb-2">Designed by Whites Castle Tech Dept.</li> -->
-            </ul>
-          </div>
-          <div class="col-12 col-md-6 col-lg-7 offset-lg-1 mb-3 d-flex flex-column place-items-center">
-            <h5 class="mt-auto">Find Us on Other Platforms</h5>
-
-            <div id="social_media" class="row mt-2 rounded overflow-hidden ms-2 me-2 ms-lg-5 me-lg-5">
-
-              <a href="https://www.facebook.com/whites.castle.amir/" class="col fs-3 btn rounded btn-primary p-0 m-1"><i class="fab fa-facebook"></i></a>
-              <a href="https://wa.me/923041115959" class="col fs-3 btn rounded btn-success p-0 m-1"><i class="fab fa-whatsapp"></i></a>
-              <a href="https://apps.apple.com/pk/app/whites-castle/id1573628371" class="col fs-3 btn rounded btn-secondary p-0 m-1"><i class="fab fa-apple"></i></a>
-              <a href="https://play.google.com/store/apps/details?id=com.whitescastle" class="col fs-3 btn rounded btn-light text-success p-0 m-1"><i class="fab fa-android"></i></a>
+    <footer class="bg-dark text-white mt-2 pt-2 pb-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-7 col-md-9">
+            <div class="row">
+              <div class="col-md-4 d-flex">
+                <span class="fs-5 fw-bold text-secondary mt-auto mb-auto">WhitesCastle</span>
+              </div>
+              <div class="col-md-8 d-flex">
+                <span class="links ms-auto me-auto">
+                  <a href="https://www.facebook.com/whites.castle.amir/" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-facebook"></i></a>
+                  <a href="https://wa.me/923041115959" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-whatsapp"></i></a>
+                  <a href="https://apps.apple.com/pk/app/whites-castle/id1573628371" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-apple"></i></a>
+                  <a href="https://play.google.com/store/apps/details?id=com.whitescastle" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-android"></i></a>
+                </span>
+              </div>
             </div>
-            <!-- <ul class="list-unstyled">
-              <li class="mb-2"><a href="/">Home</a></li>
-              <li class="mb-2"><a href="/docs/5.0/">Docs</a></li>
-              <li class="mb-2"><a href="/docs/5.0/examples/">Examples</a></li>
-              <li class="mb-2"><a href="https://themes.getbootstrap.com/">Themes</a></li>
-              <li class="mb-2"><a href="https://blog.getbootstrap.com/">Blog</a></li>
-            </ul> -->
           </div>
-        
+          <div class="col-5 col-md-3 d-flex">
+            <div class="row">
+              <div class="col-md-8 d-flex">
+                <span class="text-secondary mt-auto mb-auto ms-auto">Developed by</span>
+              </div>
+              <div class="col-md-4 d-flex">
+                <a href="http://hamza8bit.github.io" class="fw-bold text-white opacity-hover ms-auto mt-auto mb-auto">Hamza8bit</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
+    
   </body>
   <script src="cart.js"></script>
   <!-- <script>

@@ -408,6 +408,39 @@
         </div>
       </form>
     </div>
+
+
+   <footer class="bg-dark text-white mt-2 pt-2 pb-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-7 col-md-9">
+            <div class="row">
+              <div class="col-md-4 d-flex">
+                <span class="fs-5 fw-bold text-secondary mt-auto mb-auto">WhitesCastle</span>
+              </div>
+              <div class="col-md-8 d-flex">
+                <span class="links ms-auto me-auto">
+                  <a href="https://www.facebook.com/whites.castle.amir/" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-facebook"></i></a>
+                  <a href="https://wa.me/923041115959" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-whatsapp"></i></a>
+                  <a href="https://apps.apple.com/pk/app/whites-castle/id1573628371" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-apple"></i></a>
+                  <a href="https://play.google.com/store/apps/details?id=com.whitescastle" class="col fs-3 m-2 text-white opacity-hover"><i class="fab fa-android"></i></a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-md-3 d-flex">
+            <div class="row">
+              <div class="col-md-8 d-flex">
+                <span class="text-secondary mt-auto mb-auto ms-auto">Developed by</span>
+              </div>
+              <div class="col-md-4 d-flex">
+                <a href="http://hamza8bit.github.io" class="fw-bold text-white opacity-hover ms-auto mt-auto mb-auto">Hamza8bit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
     <div class="grey-screen" style="display: none;">
       <div class="screen-panel"> 
         Your order has been placed with Reference ID <span class="ref-id">??</span>
@@ -449,6 +482,7 @@
   <script src="cart.js"></script>
   <script>
     function loadCartItems() {
+      var order_completed = false
       //get cart items
       let cartItems = localStorage.getItem("cart");
       if (cartItems) {
@@ -474,10 +508,6 @@
       var str = "";
       var order_str = "";
       var total = 0;
-      // if(cart_ids.length==0){
-      //   shopping_cart.innerHTML = "<div class='w-100 text-center'>Cart is empty</div>";
-      //   return;
-      // }
 
       for (let i = 0; i < cartItems.length; i++) {
         let cartItem = cartItems[i];
@@ -494,86 +524,6 @@
         let choices = item.Choices;
         order_str += `<div class="d-flex my-2"><span>${item.Name} <b>x <span class="quantity-cart-${i}">${cartItem.Q}</span></b><br>(`;
           
-        // order_str += `<div class="col"><div class="card shadow mb-3"><div class="row g-0"><div class="col-md-5"><img src="${item.ImageURL}" class="img-fluid rounded-top" alt="..."></div><div class="col-md-7"><div class="card-body"><h5 class="card-title">${item.Name}</h5><div class="card-text"><div class="input-group mb-3"><span class="input-group-text" id="quantity-label">Quantity</span><input type="number" class="form-control" aria-label="Quantity" aria-describedby="quantity-label" onchange="changeItemQuantity('${i}', this.value)" onkeyup="changeItemQuantity('${i}', this.value)" name="qty" id="qty" min="1" max="50" step="1" value="${cartItem.Q}"><button class="btn btn-danger fw-bolder" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove from Cart" onclick="removeCartItem(${i})">X</button></div><p>Total: <b class="price-cart-${i}">${price}</b></p></div></div></div></div><div class="card-footer p-0"><div class="accordion-item border-0"><h2 class="accordion-header" id="modifiers-cart-header-${i}"><button class="accordion-button btn-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#modifers-cart-panel-${i}" aria-expanded="true" aria-controls="modifers-cart-panel-${i}">Modifiers</button></h2><div id="modifers-cart-panel-${i}" class="accordion-collapse collapse" aria-labelledby="modifiers-cart-header-${i}"><div class="accordion-body">`;
-
-        // // +item.Choices[cartItem.Choices[0].ChoiceID].Options[cartItem.Choices[0].OptionID].Name+
-        // // console.log(cartItem.Choices);
-
-        // for (
-        //   let choiceIndex = 0;
-        //   choiceIndex < item.Choices.length;
-        //   choiceIndex++
-        // ) {
-        //   let choice = item.Choices[choiceIndex];
-        //   let cartItemChoice = cartItem.C[choiceIndex];
-
-        //   if (!choice.Optional && choice.Options.length == 1) {
-        //     // must have field
-        //   } else if (choice.Optional && choice.Options.length == 1) {
-        //     //check boxes;
-        //     // let value = cartItemChoice == 0;
-        //     let name = choice.Options[0].Name;
-        //     order_str +=
-        //       '<div class="form-check"><input class="form-check-input" type="checkbox" ' +
-        //       (cartItemChoice == 0 ? "checked" : "") +
-        //       ' id="option-' +
-        //       i +
-        //       "-" +
-        //       choiceIndex +
-        //       '" onchange="changeOptional(' +
-        //       i +
-        //       "," +
-        //       choiceIndex +
-        //       ',this.checked)"><label class="form-check-label" for="option-' +
-        //       i +
-        //       "-" +
-        //       choiceIndex +
-        //       '"> ' +
-        //       name.substring(0, name.length - 3) +
-        //       " (PKR " +
-        //       choice.Options[0].Price +
-        //       ")</label></div>";
-        //   } else if (choice.Options.length > 1) {
-        //     // let value = cartItemChoice && cartItemChoice.OptionID;
-
-        //     order_str +=
-        //       '<div><select onchange="changeOption(' +
-        //       i +
-        //       "," +
-        //       choiceIndex +
-        //       ', this.selectedIndex)" class="form-select p-2"  id="option-' +
-        //       item.ItemID +
-        //       "-" +
-        //       choice.ChoiceID +
-        //       '" class="w-100 padding-sm">';
-        //     for (let option of choice.Options) {
-        //       order_str +=
-        //         "<option " +
-        //         (choice.Options.indexOf(option) == cartItemChoice
-        //           ? "selected>"
-        //           : ">") +
-        //         option.Name +
-        //         "</option>";
-        //     }
-        //     order_str += "</select></div>";
-        //   }
-        // }
-
-        // for (let choice_details of cartItem.Choices) {
-
-        //   console.log(choice_details);
-        //   let Choice = getProperty(
-        //     item.Choices,
-        //     "ChoiceID",
-        //     choice_details.ChoiceID
-        //   );
-        //   let Option = Choice.Options[choice_details.OptionID];
-        //   //   let option = getProperty(Choice.Options, "OptionID", choice_details.OptionID );
-        //   //   console.log(choice_details.OptionID, Option);
-        //   order_str += Option.Name + ",";
-        // }
-        // order_str += "</div></div></div></div></div></div>";
-
         for (let c = 0; c < cartChoices.length; c++) {
           let o = cartChoices[c];
           if (o != null) {
@@ -596,6 +546,9 @@
 
       let cart_modifiers = document.getElementsByClassName("cart-checkout");
       for (let element of cart_modifiers) element.innerHTML = order_str;
+
+      if(!order_completed)
+      checkConfig(total);
     }
 
     function changeOption(index, choice, value) {
@@ -688,11 +641,6 @@
         return;
       }
 
-      // form_obj = form_obj.serializeArray();
-
-      // form_obj = form_obj.concat([
-      //     {name: "Cart", value: JSON.stringify(cart_items)}
-      // ]);
 
       const body = {
 
@@ -730,7 +678,9 @@
              launch_toast(
           //check mark
           "✔"  
-          ,"Order has been placed"); clearCart();
+          ,"Order has been placed");
+          order_completed = true;
+          clearCart();
           const grey_screen = document.getElementsByClassName('grey-screen')[0];
           grey_screen.style.display = 'block';
           grey_screen.innerHTML = `
@@ -751,21 +701,29 @@
       // console.log(form_obj);
     }
 
-    fetch(
-        servers.api+"/servicetime"
-      ).then(res=>{
-        if(res.status == 200) return res.json()
+    function checkConfig(total){
+
+      fetch(
+        servers.api+"/config"
+        ).then(res=>{
+          if(res.status == 200) return res.json()
       }).then(json=>{
+        console.log(json);
         const time = parseInt(Math.round(new Date().getTime())/1000, 10)%(60*60*24);
         if(time<json.START_TIME || time>json.END_TIME){
-          console.log(json);
-
           document.getElementById("confirmation-positive").innerHTML = "Go Home";
           document.getElementById("confirmation-negative").innerHTML = "Call Us";
           
-          confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("index.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});
-           
+          confirmation("Closed", "You can order in between 11:00 AM to 02:00 AM", () => {window.open("index.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});  
+        }
+        if(total<json.MINIMUM_AMOUNT){
+          document.getElementById("confirmation-positive").innerHTML = "Open Menu";
+          document.getElementById("confirmation-negative").innerHTML = "Call Us";
+          
+          confirmation("Closed", "Order must be at leaset "+json.MINIMUM_AMOUNT, () => {window.open("menu.html", "_self")}, () => {window.open("tel:/+9241111606060", '_self'); window.open("index.html", "_self")});
         }
       })
-  </script>
-</html>
+    }
+      </script>
+      </html>
+      

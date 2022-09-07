@@ -156,9 +156,19 @@
             `)</span><h5 class="ms-auto price-cart-${i}">${price}</h5></div>`;
         }
 
+
         let price_elements =
           document.getElementsByClassName("total-cart-price");
-        for (let element of price_elements) element.innerHTML = total;
+        
+        for (let element of price_elements)
+        if(order.DiscountedAmount == total)
+        {
+          element.innerHTML = total;
+        }
+        else{
+          element.innerHTML = '<s class="h6">'+total+'</s>'+order.DiscountedAmount
+        }
+          
 
         document.getElementById("order-note").innerHTML = order.Note;
 
