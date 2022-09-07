@@ -203,6 +203,13 @@
             >Beverage</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-success hover-success px-2"
+            href="#Deal"
+            >Deals</a
+          >
+        </li>
       </ul>
     </div>
 
@@ -275,7 +282,9 @@
 
       //peform click
 
-      if (category == "" || category == "#" || category == "#All") displayMenu(menu);
+      if (category == "" || category == "#" || category == "#All")  displayMenu(menu.filter((item)=>{
+        return item.CategoryName != "Deals";
+      }));
       else categoryClick(document.querySelector(`a[href="${category}"]`));
 
       // console.log(window.location.hash)
@@ -307,7 +316,9 @@
 
       categoryElement.classList.add("active");
 
-      if (category == "All" || category == "") displayMenu(menu);
+      if (category == "All" || category == "") displayMenu(menu.filter((item)=>{
+        return item.CategoryName != "Deals";
+      }));
       else
         displayMenu(
           menu.filter((item) => {
@@ -329,7 +340,7 @@
             : servers.images + item.ImageURL) +
           '" alt=""><h6 class="card-header bg-white">' +
           item.Name +
-          '</h6><div class="card-body h-auto py-0"><div class="w-100 text-end mt-1 card-text"><i>PKR ' +
+          '</h6><div class="card-body h-auto py-0"><div class="w-100 text-end mt-1 card-text">'+(item.CategoryName=="Deals"?('<p class="">'+item.Description.split(", ").join("<br>")+'<p><hr>'):"")+'<i>PKR ' +
           item.Price +
           "</i></div>";
         for (let choice of item.Choices) {
